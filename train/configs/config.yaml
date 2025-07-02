@@ -1,0 +1,39 @@
+# configs/config.yaml
+
+# -- Data Configuration --
+data:
+  train_csv_path: "data/train.csv"
+  val_csv_path: "data/val.csv"
+  video_root_path: "data/"  # 根目录，csv中的路径是相对于此的
+  num_classes: 2            # 2分类: 0 for normal, 1 for theft
+
+# -- Model Configuration --
+model:
+  name: "slowfast_r50"
+  pretrained: true
+
+# -- Training Hyperparameters --
+training:
+  device: "cuda"            # "cuda" or "cpu"
+  epochs: 100
+  batch_size: 16
+  num_workers: 8          # 根据您的CPU核心数调整
+  learning_rate: 0.0001
+  optimizer: "AdamW"        # "Adam" or "SGD" or "AdamW"
+  weight_decay: 0.00005
+
+# -- Logging and Checkpointing --
+logging:
+  log_dir: "runs/theft_detection_experiment_1" # TensorBoard日志目录
+  checkpoint_dir: "checkpoints/"
+  checkpoint_filename: "best_model.pth"
+
+# -- Video Transforms Configuration for SlowFast --
+transforms:
+  side_size: 256
+  crop_size: 224
+  num_frames: 32            # 最终输入模型的总帧数
+  sampling_rate: 8          # Slow pathway的采样步长
+  alpha: 4                  # Fast pathway相对于Slow pathway的速度倍率
+  mean: [0.45, 0.45, 0.45]
+  std: [0.225, 0.225, 0.225]

@@ -1,0 +1,7 @@
+opencv-python~=4.11.0.86
+numpy~=2.2.5
+ffmpeg~=1.4
+ffmpeg-python~=0.2.0
+torch~=2.7.0+cu128
+mediapipe~=0.10.21
+ultralytics~=8.3.122
